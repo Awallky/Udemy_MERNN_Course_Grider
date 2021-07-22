@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 
 app.get('/', (req, res) => {
-    res.send({ hi: 'there' })
+    res.send({ hi: 'there', bye: 'buddy' })
 })
 
 // passed in from Heroku, or use default value of 4000
