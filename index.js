@@ -35,5 +35,6 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 
 // passed in from Heroku, or use default value of 4000
-const PORT_NO = process.env.PORT || 4000;
+const DEFAULT_PORT = 4000;
+const PORT_NO = process.env.PORT || DEFAULT_PORT;
 app.listen(PORT_NO);
