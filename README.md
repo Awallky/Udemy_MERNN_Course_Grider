@@ -1,6 +1,6 @@
 # Tools/Dependencies
 * Node
-* Heroku CLI
 * VS Code
-
-
+* Google Cloud
+* Heroku
+* MongoDB
