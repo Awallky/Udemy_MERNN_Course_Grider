@@ -1,0 +1,44 @@
+Updated 3-22-2021
+
+In the upcoming lecture, we will be adding a proxy to our client-side package.json file. Create React App has since changed how this works and we no longer need to do this step. Instead, we need to create a special file to hold our proxy code.
+
+1. In the client/ directory install the http-proxy-middleware library:
+
+Important - We must install the latest 1.x.x release of this library. Go to the releases page here: 
+
+https://github.com/chimurai/http-proxy-middleware/releases
+
+Find the latest 1.x.x version and install that specific version.
+
+eg:
+
+npm install http-proxy-middleware@1.0.6
+
+2. Create a setupProxy.js file in the client/src/ directory. There is no need to import this file anywhere, CRA looks for a file by this name and loads it.
+
+3. Add your proxies to the setupProxy.js file:
+
+const { createProxyMiddleware } = require("http-proxy-middleware");
+module.exports = function (app) {
+  app.use(
+    ["/api", "/auth/google"],
+    createProxyMiddleware({
+      target: "http://localhost:5000",
+    })
+  );
+};
+4. Restart start your servers with npm run dev and the proxies should now work as expected. Note - anytime you make a change to the setupProxy file you'll need to restart your server.
+
+Make sure you don't add the proxy configuration to the package.json file as shown in the video lectures. If you do, you'll get the following error:
+
+[1] When specified, "proxy" in package.json must be a string.
+
+[1] Instead, the type of "proxy" was "object".
+
+[1] Either remove "proxy" from package.json, or make it a string.
+
+***Do not add changeOrigin: true to your proxy script, it will completely break our redirects!***
+
+IMPORTANT! Please Read!
+
+Many Students have been skipping the lectures ahead thinking that we are covering all of the steps and material here. If you do not follow along with the rest of the lectures you will miss the very very important step to add the second URI redirect to the Google Project
