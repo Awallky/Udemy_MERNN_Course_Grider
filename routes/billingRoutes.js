@@ -7,9 +7,7 @@ const CENTS_PER_DOLLAR = 100;
 const DOLLAR_AMOUNT    = 5;
 module.exports = app => {
     app.post('/api/stripe', requireLogin, async (req, res) => {
-        if (!req.user) {
-            return res.status(401).send({ error: 'You must log in!' });
-        }
+
 
         const charge = await stripe.charges.create({
             amount: CENTS_PER_DOLLAR * DOLLAR_AMOUNT,
