@@ -13,14 +13,9 @@ mongoose.connect(
 );
 
 const app = express();
-// parse application/x-www-form-urlencoded
-app.use(express.urlencoded({ extended: true })); 
-// parse application/json
-app.use(express.json());
-
 require('./services/cookies')(app);
 require('./routes/authRoutes')(app);
 require('./routes/billingRoutes')(app);
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT);
